@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>PixelForge AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+// ===== GLOBAL =====
+body {
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.box {
+  max-width: 520px;
+  margin: auto;
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 16px;
+}
+
+// ===== INPUT =====
+input, button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+}
+
+button {
+  background: #22c55e;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+// ===== PREVIEW =====
+#previewBox {
+  margin-top: 20px;
+  display: none;
+}
+
+#preview {
+  max-width: 100%;
+  border-radius: 12px;
+}
+
+// ===== LOADING OVERLAY =====
+#loading {
+  position: absolute;
+  top:0; left:0; right:0; bottom:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,0.6);
+  border-radius:12px;
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h2>🔥 PixelForge AI</h2>
+  <p>Ubah foto jadi iklan produk otomatis</p>
+
+  <input type="file" id="imageInput">
+  <button onclick="generate()">Generate</button>
+
+  <div id="previewBox">
+    <p>Hasil Generate:</p>
+
+    <div style="position:relative;">
+      <img id="preview">
+      <div id="loading"><p>⏳ Generating...</p></div>
+    </div>
+
+    <button onclick="downloadImage()">Download</button>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
