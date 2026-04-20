@@ -17,7 +17,7 @@ export default async function handler(req, res) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        model: "gpt-4o",
+        model: "openai/gpt-4o",
         messages: [{
           role: "user",
           content: [
@@ -46,7 +46,7 @@ export default async function handler(req, res) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        model: "gpt-image-1",
+        model: "openai/gpt-image-1",
         prompt: `Professional marketplace ads for ${data.name}. ${data.tagline}.`,
         image: image.split(",")[1],
         size: "1024x1024"
