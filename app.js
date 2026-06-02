@@ -7,7 +7,6 @@ let unsubscribeFunctions = [];
 const {
     auth,
     db,
-    storage,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
@@ -23,9 +22,6 @@ const {
     where,
     onSnapshot,
     serverTimestamp,
-    ref,
-    uploadBytes,
-    getDownloadURL
 } = window.firebaseServices;
 
 // Initialize App
@@ -124,40 +120,18 @@ function handleRegister(e) {
     const password = document.getElementById('registerPassword').value;
     const location = document.getElementById('location').value;
     const jobCategory = document.getElementById('jobCategory').value;
-    const photoFile = document.getElementById('profilePhoto').files[0];
     
     createUserWithEmailAndPassword(auth, email, password)
         .then(userCredential => {
             const uid = userCredential.user.uid;
-            
-            // Upload photo if provided
-            if (photoFile) {
-                uploadProfilePhoto(uid, photoFile, fullName, whatsapp, email, location, jobCategory);
-            } else {
-                saveUserData(uid, fullName, whatsapp, email, location, jobCategory, `https://ui-avatars.com/api/?name=${fullName}&background=10b981&color=fff`);
-            }
+            // Generate avatar using initials
+            const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(fullName)}&background=10b981&color=fff`;
+            saveUserData(uid, fullName, whatsapp, email, location, jobCategory, avatarUrl);
         })
         .catch(error => {
             console.error('Register error:', error);
             showNotification('Gagal mendaftar: ' + error.message);
             showLoading(false);
-        });
-}
-
-function uploadProfilePhoto(uid, file, fullName, whatsapp, email, location, jobCategory) {
-    const fileRef = ref(storage, `profiles/${uid}/${Date.now()}-${file.name}`);
-    
-    uploadBytes(fileRef, file)
-        .then(snapshot => {
-            return getDownloadURL(snapshot.ref);
-        })
-        .then(downloadURL => {
-            saveUserData(uid, fullName, whatsapp, email, location, jobCategory, downloadURL);
-        })
-        .catch(error => {
-            console.error('Photo upload error:', error);
-            showNotification('Gagal upload foto, lanjut tanpa foto');
-            saveUserData(uid, fullName, whatsapp, email, location, jobCategory, `https://ui-avatars.com/api/?name=${fullName}&background=10b981&color=fff`);
         });
 }
 
@@ -182,7 +156,6 @@ function saveUserData(uid, fullName, whatsapp, email, location, jobCategory, pho
         .then(() => {
             showNotification('Berhasil mendaftar! Silakan login.');
             document.getElementById('registerFormElement').reset();
-            document.getElementById('profilePhoto').value = '';
             toggleAuth();
             showLoading(false);
         })
