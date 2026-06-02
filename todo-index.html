@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List - Aplikasi Catatan Tugas</title>
+    <link rel="stylesheet" href="todo-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app" class="app-container">
+        <!-- Loading State -->
+        <div id="loading" class="loading-overlay" style="display: none;">
+            <div class="spinner"></div>
+        </div>
+
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="app-title">📋 Todo List</h1>
+                <p class="app-subtitle">Kelola tugas harian Anda</p>
+            </div>
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+                <span class="theme-icon">🌙</span>
+            </button>
+        </header>
+
+        <!-- Main Container -->
+        <div class="main-container">
+            <!-- Statistics Section -->
+            <div class="stats-section">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalTodos">0</div>
+                    <div class="stat-label">Total Tugas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="completedTodos">0</div>
+                    <div class="stat-label">Selesai</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="activeTodos">0</div>
+                    <div class="stat-label">Aktif</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="completionRate">0%</div>
+                    <div class="stat-label">Progres</div>
+                </div>
+            </div>
+
+            <!-- Add Todo Section -->
+            <div class="add-todo-section">
+                <h2>Tambah Tugas Baru</h2>
+                <form id="addTodoForm" class="todo-form">
+                    <div class="form-group">
+                        <input 
+                            type="text" 
+                            id="todoInput" 
+                            placeholder="Tulis tugas baru..."
+                            class="todo-input"
+                            required
+                        >
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <select id="prioritySelect" class="form-select">
+                                <option value="low">🟢 Rendah</option>
+                                <option value="medium" selected>🟡 Sedang</option>
+                                <option value="high">🔴 Tinggi</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <select id="categorySelect" class="form-select">
+                                <option value="personal">👤 Personal</option>
+                                <option value="work">💼 Kerja</option>
+                                <option value="shopping">🛒 Belanja</option>
+                                <option value="health">🏥 Kesehatan</option>
+                                <option value="other">📌 Lainnya</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input 
+                                type="date" 
+                                id="dueDateInput" 
+                                class="form-input"
+                            >
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-add">
+                        ➕ Tambah Tugas
+                    </button>
+                </form>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <h2>Filter & Cari</h2>
+                <div class="filter-controls">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Cari tugas..."
+                        class="search-input"
+                    >
+                    
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">Semua</button>
+                        <button class="filter-btn" data-filter="active">Aktif</button>
+                        <button class="filter-btn" data-filter="completed">Selesai</button>
+                        <button class="filter-btn" data-filter="high">🔴 Tinggi</button>
+                        <button class="filter-btn" data-filter="medium">🟡 Sedang</button>
+                        <button class="filter-btn" data-filter="low">🟢 Rendah</button>
+                    </div>
+                    
+                    <div class="sort-controls">
+                        <label for="sortSelect">Urutkan:</label>
+                        <select id="sortSelect" class="form-select">
+                            <option value="date-desc">Terbaru Pertama</option>
+                            <option value="date-asc">Terlama Pertama</option>
+                            <option value="priority">Prioritas Tinggi</option>
+                            <option value="name">Nama (A-Z)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Todo List Section -->
+            <div class="todo-list-section">
+                <h2>Daftar Tugas</h2>
+                <div id="todoList" class="todo-list">
+                    <!-- Todos akan di-load di sini -->
+                </div>
+                
+                <div id="emptyState" class="empty-state" style="display: none;">
+                    <div class="empty-icon">📭</div>
+                    <p>Tidak ada tugas. Buat tugas baru untuk memulai!</p>
+                </div>
+            </div>
+
+            <!-- Actions Section -->
+            <div class="actions-section">
+                <button id="clearCompletedBtn" class="btn btn-secondary" onclick="clearCompleted()">
+                    🗑️ Hapus Tugas Selesai
+                </button>
+                <button id="exportBtn" class="btn btn-secondary" onclick="exportTodos()">
+                    📥 Export (JSON)
+                </button>
+                <button id="importBtn" class="btn btn-secondary" onclick="importTodos()">
+                    📤 Import (JSON)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Import Input -->
+    <input type="file" id="importFile" style="display: none;" accept=".json" />
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Tugas</h2>
+                <button class="modal-close" onclick="closeEditModal()">&times;</button>
+            </div>
+            <form id="editTodoForm" class="todo-form">
+                <div class="form-group">
+                    <label for="editTodoInput">Judul Tugas</label>
+                    <input 
+                        type="text" 
+                        id="editTodoInput" 
+                        class="todo-input"
+                        required
+                    >
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editPrioritySelect">Prioritas</label>
+                        <select id="editPrioritySelect" class="form-select">
+                            <option value="low">🟢 Rendah</option>
+                            <option value="medium">🟡 Sedang</option>
+                            <option value="high">🔴 Tinggi</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editCategorySelect">Kategori</label>
+                        <select id="editCategorySelect" class="form-select">
+                            <option value="personal">👤 Personal</option>
+                            <option value="work">💼 Kerja</option>
+                            <option value="shopping">🛒 Belanja</option>
+                            <option value="health">🏥 Kesehatan</option>
+                            <option value="other">📌 Lainnya</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editDueDateInput">Tanggal Jatuh Tempo</label>
+                    <input 
+                        type="date" 
+                        id="editDueDateInput" 
+                        class="form-input"
+                    >
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">💾 Simpan Perubahan</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeEditModal()">Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="todo-config.js"></script>
+    <script src="todo-utils.js"></script>
+    <script src="todo-app.js"></script>
+</body>
+</html>
