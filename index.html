@@ -207,49 +207,72 @@
     </div>
 
     <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
+    <!-- Firebase SDK COMPAT -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
-    <script>
-        // Firebase Configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDgiQvagZWZh8q3M0XEQCh7n0VHy9m1Vyo",
-            authDomain: "kerjadekat-42fba.firebaseapp.com",
-            projectId: "kerjadekat-42fba",
-            storageBucket: "kerjadekat-42fba.firebasestorage.app",
-            messagingSenderId: "333291959453",
-            appId: "1:333291959453:web:8aff82f274ad1f9099d074",
-            measurementId: "G-RT88SD1MC7"
-        };
+<script>
+    // Firebase Configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyDgiQvagZWZh8q3M0XEQCh7n0VHy9m1Vyo",
+        authDomain: "kerjadekat-42fba.firebaseapp.com",
+        projectId: "kerjadekat-42fba",
+        storageBucket: "kerjadekat-42fba.firebasestorage.app",
+        messagingSenderId: "333291959453",
+        appId: "1:333291959453:web:8aff82f274ad1f9099d074",
+        measurementId: "G-RT88SD1MC7"
+    };
 
-        // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const auth = firebase.getAuth(app);
-        const db = firebase.getFirestore(app);
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
 
-        // Export Firebase services to window
-        window.firebaseServices = {
-            auth,
-            db,
-            createUserWithEmailAndPassword: firebase.createUserWithEmailAndPassword,
-            signInWithEmailAndPassword: firebase.signInWithEmailAndPassword,
-            signOut: firebase.signOut,
-            onAuthStateChanged: firebase.onAuthStateChanged,
-            collection: firebase.collection,
-            addDoc: firebase.addDoc,
-            getDocs: firebase.getDocs,
-            getDoc: firebase.getDoc,
-            doc: firebase.doc,
-            setDoc: firebase.setDoc,
-            updateDoc: firebase.updateDoc,
-            query: firebase.query,
-            where: firebase.where,
-            onSnapshot: firebase.onSnapshot,
-            serverTimestamp: firebase.serverTimestamp,
-            Timestamp: firebase.Timestamp,
-            deleteDoc: firebase.deleteDoc
-        };
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // Export Firebase services to window
+    window.firebaseServices = {
+        auth,
+        db,
+        createUserWithEmailAndPassword: (auth, email, password) =>
+            auth.createUserWithEmailAndPassword(email, password),
+
+        signInWithEmailAndPassword: (auth, email, password) =>
+            auth.signInWithEmailAndPassword(email, password),
+
+        signOut: (auth) => auth.signOut(),
+
+        onAuthStateChanged: (auth, callback) =>
+            auth.onAuthStateChanged(callback),
+
+        collection: (db, name) => db.collection(name),
+
+        addDoc: (collectionRef, data) => collectionRef.add(data),
+
+        getDocs: (queryRef) => queryRef.get(),
+
+        getDoc: (docRef) => docRef.get(),
+
+        doc: (db, collectionName, id) =>
+            db.collection(collectionName).doc(id),
+
+        setDoc: (docRef, data) => docRef.set(data),
+
+        updateDoc: (docRef, data) => docRef.update(data),
+
+        query: (collectionRef) => collectionRef,
+
+        where: firebase.firestore.FieldPath
+            ? (...args) => args
+            : null,
+
+        onSnapshot: (ref, success, error) =>
+            ref.onSnapshot(success, error),
+
+        serverTimestamp: () =>
+            firebase.firestore.FieldValue.serverTimestamp(),
+    };
+</script>
     </script>
 
     <script src="app.js"></script>
