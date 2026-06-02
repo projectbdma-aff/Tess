@@ -1,11 +1,11 @@
 // Firebase Configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyCxSbzpqLkjCF7LhxCsdg3xu530e0b_frs",
-    authDomain: "kerjadekat-web.firebaseapp.com",
-    projectId: "kerjadekat-web",
-    storageBucket: "kerjadekat-web.firebasestorage.app",
-    messagingSenderId: "99396133528",
-    appId: "1:99396133528:web:7a01b8d1ffa588c50da6ed"
+    apiKey: "AIzaSyDgiQvagZWZh8q3M0XEQCh7n0VHy9m1Vyo",
+    authDomain: "kerjadekat-42fba.firebaseapp.com",
+    projectId: "kerjadekat-42fba",
+    storageBucket: "kerjadekat-42fba.firebasestorage.app",
+    messagingSenderId: "333291959453",
+    appId: "1:333291959453:web:8aff82f274ad1f9099d074"
 };
 
 // Initialize Firebase
