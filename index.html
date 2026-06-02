@@ -211,7 +211,58 @@
         </div>
     </div>
 
-    <script type="module" src="firebase.js"></script>
-    <script type="module" src="app.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage.js"></script>
+
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDgiQvagZWZh8q3M0XEQCh7n0VHy9m1Vyo",
+            authDomain: "kerjadekat-42fba.firebaseapp.com",
+            projectId: "kerjadekat-42fba",
+            storageBucket: "kerjadekat-42fba.firebasestorage.app",
+            messagingSenderId: "333291959453",
+            appId: "1:333291959453:web:8aff82f274ad1f9099d074"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.getAuth(app);
+        const db = firebase.getFirestore(app);
+        const storage = firebase.getStorage(app);
+
+        // Export Firebase services to window
+        window.firebaseServices = {
+            auth,
+            db,
+            storage,
+            createUserWithEmailAndPassword: firebase.createUserWithEmailAndPassword,
+            signInWithEmailAndPassword: firebase.signInWithEmailAndPassword,
+            signOut: firebase.signOut,
+            onAuthStateChanged: firebase.onAuthStateChanged,
+            collection: firebase.collection,
+            addDoc: firebase.addDoc,
+            getDocs: firebase.getDocs,
+            getDoc: firebase.getDoc,
+            doc: firebase.doc,
+            setDoc: firebase.setDoc,
+            updateDoc: firebase.updateDoc,
+            query: firebase.query,
+            where: firebase.where,
+            onSnapshot: firebase.onSnapshot,
+            serverTimestamp: firebase.serverTimestamp,
+            Timestamp: firebase.Timestamp,
+            deleteDoc: firebase.deleteDoc,
+            ref: firebase.ref,
+            uploadBytes: firebase.uploadBytes,
+            getDownloadURL: firebase.getDownloadURL,
+            deleteObject: firebase.deleteObject
+        };
+    </script>
+
+    <script src="app.js"></script>
 </body>
 </html>
