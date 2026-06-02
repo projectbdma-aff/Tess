@@ -226,10 +226,12 @@ function handleCreateJob(e) {
 
 // Load Home Feed
 function loadHomeFeed() {
-    const jobsQuery = query(
-        collection(db, 'jobs'),
-        where('status', '==', 'open')
-    );
+  //  const jobsQuery = query(
+      //  collection(db, 'jobs'),
+     //   where('status', '==', 'open')
+  //  );
+
+    const jobsQuery = collection(db, 'jobs').where('status', '==', 'open');
     
     // Unsubscribe from previous listener if exists
     const feedUnsubscribe = onSnapshot(jobsQuery, (snapshot) => {
@@ -311,7 +313,8 @@ function handleSearch(e) {
         return;
     }
     
-    const jobsQuery = query(collection(db, 'jobs'), where('status', '==', 'open'));
+   // const jobsQuery = query(collection(db, 'jobs'), where('status', '==', 'open'));
+    const jobsQuery = collection(db, 'jobs').where('status', '==', 'open');
     
     getDocs(jobsQuery)
         .then(snapshot => {
