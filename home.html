@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda - KerjaDekat</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Loading State -->
+        <div id="loading" class="loading-overlay" style="display: none;">
+            <div class="spinner"></div>
+        </div>
+
+        <div class="main-app">
+            <!-- Sidebar -->
+            <div id="sidebar" class="sidebar">
+                <div class="sidebar-header">
+                    <button class="sidebar-close" onclick="closeSidebar()">×</button>
+                </div>
+                <nav class="sidebar-nav">
+                    <a href="home.html" class="nav-item" onclick="setActive(event)">
+                        <span class="nav-icon">🏠</span>
+                        <span>Beranda</span>
+                    </a>
+                    <a href="create-job.html" class="nav-item">
+                        <span class="nav-icon">➕</span>
+                        <span>Buat Jasa</span>
+                    </a>
+                    <a href="index.html" class="nav-item" id="searchLink">
+                        <span class="nav-icon">🔍</span>
+                        <span>Cari Jasa</span>
+                    </a>
+                    <a href="profile.html" class="nav-item">
+                        <span class="nav-icon">👤</span>
+                        <span>Profil</span>
+                    </a>
+                    <hr class="nav-divider">
+                    <a href="#" onclick="logout(event)" class="nav-item nav-logout">
+                        <span class="nav-icon">🚪</span>
+                        <span>Keluar</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Header -->
+                <div class="app-header">
+                    <button class="menu-btn" onclick="openSidebar()">☰</button>
+                    <h1 class="header-title">KerjaDekat</h1>
+                    <div class="header-spacer"></div>
+                </div>
+
+                <!-- Home Page -->
+                <div class="page">
+                    <div class="page-header">
+                        <h2>Jasa Terdekat</h2>
+                    </div>
+                    <div id="jobFeed" class="job-feed">
+                        <!-- Job cards akan di-load di sini -->
+                    </div>
+                    <div id="emptyFeed" class="empty-state" style="display: none;">
+                        <div class="empty-icon">🗑️</div>
+                        <p>Belum ada jasa tersedia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="firebase.js"></script>
+    <script type="module" src="home.js"></script>
+</body>
+</html>
