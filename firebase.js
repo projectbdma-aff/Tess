@@ -1,11 +1,11 @@
 // Firebase Configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyD_YOUR_API_KEY",
-    authDomain: "kerja-dekat-YOUR_ID.firebaseapp.com",
-    projectId: "kerja-dekat-YOUR_ID",
-    storageBucket: "kerja-dekat-YOUR_ID.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "1:YOUR_SENDER_ID:web:YOUR_APP_ID"
+    apiKey: "AIzaSyCxSbzpqLkjCF7LhxCsdg3xu530e0b_frs",
+    authDomain: "kerjadekat-web.firebaseapp.com",
+    projectId: "kerjadekat-web",
+    storageBucket: "kerjadekat-web.firebasestorage.app",
+    messagingSenderId: "99396133528",
+    appId: "1:99396133528:web:7a01b8d1ffa588c50da6ed"
 };
 
 // Initialize Firebase
