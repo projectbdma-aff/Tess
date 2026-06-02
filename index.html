@@ -78,11 +78,6 @@
                             <option value="lainnya">Lainnya</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="profilePhoto">Foto Profil (Opsional)</label>
-                        <input type="file" id="profilePhoto" accept="image/*">
-                        <small>Jika tidak upload, gunakan avatar default</small>
-                    </div>
                     <button type="submit" class="btn btn-primary btn-block">Daftar</button>
                     <p class="form-footer">Sudah punya akun? <a href="#" onclick="toggleAuth()">Masuk di sini</a></p>
                 </form>
@@ -139,7 +134,7 @@
                         <!-- Job cards akan di-load di sini -->
                     </div>
                     <div id="emptyFeed" class="empty-state" style="display: none;">
-                        <div class="empty-icon">��️</div>
+                        <div class="empty-icon">🗑️</div>
                         <p>Belum ada jasa tersedia</p>
                     </div>
                 </div>
@@ -215,7 +210,6 @@
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage.js"></script>
 
     <script>
         // Firebase Configuration
@@ -233,13 +227,11 @@
         const app = firebase.initializeApp(firebaseConfig);
         const auth = firebase.getAuth(app);
         const db = firebase.getFirestore(app);
-        const storage = firebase.getStorage(app);
 
         // Export Firebase services to window
         window.firebaseServices = {
             auth,
             db,
-            storage,
             createUserWithEmailAndPassword: firebase.createUserWithEmailAndPassword,
             signInWithEmailAndPassword: firebase.signInWithEmailAndPassword,
             signOut: firebase.signOut,
@@ -256,11 +248,7 @@
             onSnapshot: firebase.onSnapshot,
             serverTimestamp: firebase.serverTimestamp,
             Timestamp: firebase.Timestamp,
-            deleteDoc: firebase.deleteDoc,
-            ref: firebase.ref,
-            uploadBytes: firebase.uploadBytes,
-            getDownloadURL: firebase.getDownloadURL,
-            deleteObject: firebase.deleteObject
+            deleteDoc: firebase.deleteDoc
         };
     </script>
 
