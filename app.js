@@ -1,3 +1,12 @@
+console.log("app.js berhasil dimuat!");
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM sudah siap.");
+    checkAuthState();
+    setupEventListeners();
+});
+
+
 // Global State
 let currentUser = null;
 let currentUserData = null;
