@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function checkAuthState() {
    onAuthStateChanged(auth, user => {
     //    auth.onAuthStateChanged(user => {
+       console.log("Auth State Changed:", user);
         if (user) {
             currentUser = user;
             loadUserData();
