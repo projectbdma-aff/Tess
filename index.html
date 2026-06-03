@@ -234,40 +234,40 @@
     window.firebaseServices = {
         auth,
        db,
-      //8  createUserWithEmailAndPassword: (auth, email, password),//=>//        
+      //8  createUserWithEmailAndPassword: (auth, email, password),        
         auth.createUserWithEmailAndPassword(email, password),
 
-    //   signInWithEmailAndPassword: (auth, email, password), //=>
+    //   signInWithEmailAndPassword: (auth, email, password),
         auth.signInWithEmailAndPassword(email, password),
 
-       //signOut: (auth) //=> 
+       //signOut: (auth) 
         auth.signOut(),
 
      //  onAuthStateChanged: (auth, callback),
        auth.onAuthStateChanged(callback),
 
-      // collection: (db, name), // => 
+      // collection: (db, name), 
         db.collection(name),
 
-       // addDoc: (collectionRef, data), // => 
+       // addDoc: (collectionRef, data),  
         collectionRef.add(data),
 
-       // getDocs: (queryRef), // => 
+       // getDocs: (queryRef), 
         queryRef.get(),
 
-        //getDoc: (docRef), // => 
+        //getDoc: (docRef), 
         docRef.get(),
 
-    //  doc: (db, collectionName, id), // =>
+    //  doc: (db, collectionName, id),
             db.collection(collectionName).doc(id),
 
-       // setDoc: (docRef, data), // => 
+       // setDoc: (docRef, data), 
         docRef.set(data),
 
-       // updateDoc: (docRef, data), // =>
+       // updateDoc: (docRef, data),
         docRef.update(data),
 
-        //query: (collectionRef), // => 
+        //query: (collectionRef), 
         collectionRef,
 
         where: firebase.firestore.FieldPath
