@@ -18,9 +18,9 @@ let currentUserData = null;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
-   // checkAuthState();
-if (typeof loadHomeFeed === 'function') {
-            loadHomeFeed();
+    checkAuthState();
+//if (typeof loadHomeFeed === 'function') {
+           // loadHomeFeed();
 });
 
 
