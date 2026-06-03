@@ -74,26 +74,26 @@ function loadUserData() {
 }
 
 // Setup Event Listeners
+function setupEventListeners() {
+     Login Form
+   const loginForm = document.getElementById('loginFormElement');
+    if (loginForm) loginForm.addEventListener('submit', handleLogin);
+
 //function setupEventListeners() {
     // Login Form
- //   const loginForm = document.getElementById('loginFormElement');
-   // if (loginForm) loginForm.addEventListener('submit', handleLogin);
-
-function setupEventListeners() {
-    // Login Form
-    const loginForm = document.getElementById('loginFormElement');
+//    const loginForm = document.getElementById('loginFormElement');
     
-    if (loginForm) {
-        console.log("Form login ditemukan, memasang event listener...");
-        loginForm.addEventListener('submit', function(e) {
-            console.log("Tombol masuk diklik!");
-            handleLogin(e);
-        });
-    } else {
-        console.error("Gawat! Form login (loginFormElement) tidak ditemukan di HTML!");
-    }
+//    if (loginForm) {
+  //      console.log("Form login ditemukan, memasang event listener...");
+      //  loginForm.addEventListener('submit', function(e) {
+    //        console.log("Tombol masuk diklik!");
+         //   handleLogin(e);
+      //  });
+  //  } else {
+      //  console.error("Gawat! Form login (loginFormElement) tidak ditemukan di HTML!");
+  //  }
 
-}
+//}
     
     // ... sisa kode lainnya
 
