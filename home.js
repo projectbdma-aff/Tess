@@ -17,19 +17,20 @@ let currentUser = null;
 let currentUserData = null;
 
 // Initialize
-//document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
    // checkAuthState();
-
-//});
+if (typeof loadHomeFeed === 'function') {
+            loadHomeFeed();
+});
 
 
     // Panggil fungsi ini saat halaman dimuat
-    document.addEventListener('DOMContentLoaded', () => {
+   // document.addEventListener('DOMContentLoaded', () => {
         // Jika Anda menggunakan app.js yang digabung, pastikan fungsi ini ada
-        if (typeof loadHomeFeed === 'function') {
-            loadHomeFeed();
-        }
-    });
+      //  if (typeof loadHomeFeed === 'function') {
+      //      loadHomeFeed();
+    //    }
+ //   });
 
 
 function checkAuthState() {
