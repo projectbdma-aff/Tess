@@ -20,7 +20,7 @@ let currentUserData = null;
 document.addEventListener('DOMContentLoaded', function() {
     checkAuthState();
 //if (typeof loadHomeFeed === 'function') {
-           // loadHomeFeed();
+    loadHomeFeed();
 });
 
 
@@ -38,7 +38,7 @@ function checkAuthState() {
         if (user) {
             currentUser = user;
             loadUserData();
-            loadHomeFeed();
+           // loadHomeFeed();
         } else {
             window.location.href = 'index.html';
         }
