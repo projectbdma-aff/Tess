@@ -51,7 +51,7 @@ function checkAuthState() {
         if (user) {
             currentUser = user;
             loadUserData();
-            showMainApp();
+           // showMainApp();
         } else {
             currentUser = null;
             showAuthSection();
