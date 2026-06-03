@@ -83,6 +83,8 @@ function setupEventListeners() {
     } else {
         console.error("Gawat! Form login (loginFormElement) tidak ditemukan di HTML!");
     }
+
+}
     
     // ... sisa kode lainnya
 
