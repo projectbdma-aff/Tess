@@ -208,9 +208,15 @@ function handleCreateJob(e) {
 
 // Load Home Feed
 function loadHomeFeed() {
+
+console.log("Mencoba memuat data beranda..."); // Tambahkan ini
+    
+    
     const jobsQuery = db.collection('jobs').where('status', '==', 'open');
     
     const feedUnsubscribe = jobsQuery.onSnapshot((snapshot) => {
+        console.log("Data diterima, jumlah jasa:", snapshot.docs.length); // Tambahkan ini
+        
         const jobFeed = document.getElementById('jobFeed');
         jobFeed.innerHTML = '';
         
