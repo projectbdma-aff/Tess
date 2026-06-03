@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda - KerjaDekat</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Loading State -->
+        <div id="loading" class="loading-overlay" style="display: none;">
+            <div class="spinner"></div>
+        </div>
+
+        <div class="main-app">
+            <!-- Sidebar -->
+            <div id="sidebar" class="sidebar">
+                <div class="sidebar-header">
+                    <button class="sidebar-close" onclick="closeSidebar()">×</button>
+                </div>
+                <nav class="sidebar-nav">
+                    <a href="home.html" class="nav-item">
+                        <span class="nav-icon"></span>
+                        <span>Beranda</span>
+                    </a>
+                    <a href="create-job.html" class="nav-item">
+                        <span class="nav-icon"></span>
+                        <span>Buat Jasa</span>
+                    </a>
+                    <a href="index.html" class="nav-item" id="searchLink">
+                        <span class="nav-icon"></span>
+                        <span>Cari Jasa</span>
+                    </a>
+                    <a href="profile.html" class="nav-item">
+                        <span class="nav-icon"></span>
+                        <span>Profil</span>
+                    </a>
+                    <hr class="nav-divider">
+                    <a href="#" onclick="logout(event)" class="nav-item nav-logout">
+                        <span class="nav-icon"></span>
+                        <span>Keluar</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <div class="app-header">
+                    <button class="menu-btn" onclick="openSidebar()">☰</button>
+                    <h1 class="header-title">KerjaDekat</h1>
+                    <div class="header-spacer"></div>
+                </div>
+
+                <div class="page">
+                    <div class="page-header">
+                        <h2>Jasa Terdekat</h2>
+                    </div>
+                    <!-- Container utama untuk job feed -->
+                    <div id="jobFeed" class="job-feed">
+                        <!-- Data akan muncul di sini setelah fungsi dipanggil -->
+                    </div>
+                    <div id="emptyFeed" class="empty-state" style="display: none;">
+                        <div class="empty-icon"></div>
+                        <p>Belum ada jasa tersedia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK & App Scripts -->
+    <script type="module" src="firebase.js"></script>
+    <script type="module" src="home.js"></script>
+
+    <!-- Inisialisasi Script -->
+    <script type="module">
+        import { loadHomeFeed } from './home.js';
+
+        // Menunggu semua resource termuat sebelum menjalankan fungsi
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log("Halaman dimuat, mencoba memuat feed...");
+            
+            // Cek apakah fungsi ada
+            if (typeof loadHomeFeed === 'function') {
+                loadHomeFeed();
+            } else {
+                console.error("Fungsi loadHomeFeed tidak ditemukan di home.js. Pastikan fungsi di-export dengan benar.");
+            }
+        });
+    </script>
+</body>
+</html>
