@@ -51,11 +51,14 @@ export function loadHomeFeed() {
         console.error("Elemen #jobFeed tidak ditemukan di DOM");
         return;
     }
+    // Ubah bagian ini di loadHomeFeed() pada home.js
+// Hapus bagian 'where' untuk sementara
+const jobsQuery = query(collection(db, 'jobs'));
 
-    const jobsQuery = query(
-        collection(db, 'jobs'),
-        ('status', '==', 'open')
-    );
+  //  const jobsQuery = query(
+    //    collection(db, 'jobs'),
+     //   ('status', '==', 'open')
+//    );
     
     // Gunakan onSnapshot untuk real-time update
     onSnapshot(jobsQuery, (snapshot) => {
