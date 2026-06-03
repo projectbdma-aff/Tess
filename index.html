@@ -234,42 +234,42 @@
     window.firebaseServices = {
         auth,
        db,
-        createUserWithEmailAndPassword: (auth, email, password) //=>//        auth.createUserWithEmailAndPassword(email, password),
+        createUserWithEmailAndPassword: (auth, email, password),//=>//        auth.createUserWithEmailAndPassword(email, password),
 
-       signInWithEmailAndPassword: (auth, email, password) //=>
+       signInWithEmailAndPassword: (auth, email, password), //=>
          //   auth.signInWithEmailAndPassword(email, password),
 
        signOut: (auth) //=> auth.signOut(),
 
-       onAuthStateChanged: (auth, callback) =>
+       onAuthStateChanged: (auth, callback),
           //  auth.onAuthStateChanged(callback),
 
-       collection: (db, name) => db.collection(name),
+       collection: (db, name), // => db.collection(name),
 
-        addDoc: (collectionRef, data) => collectionRef.add(data),
+        addDoc: (collectionRef, data), // => collectionRef.add(data),
 
-        getDocs: (queryRef) => queryRef.get(),
+        getDocs: (queryRef), // => queryRef.get(),
 
-        getDoc: (docRef) => docRef.get(),
+        getDoc: (docRef), // => docRef.get(),
 
-      doc: (db, collectionName, id) =>
+      doc: (db, collectionName, id), // =>
             db.collection(collectionName).doc(id),
 
-        setDoc: (docRef, data) => docRef.set(data),
+        setDoc: (docRef, data), // => docRef.set(data),
 
-        updateDoc: (docRef, data) => docRef.update(data),
+        updateDoc: (docRef, data), // => docRef.update(data),
 
-        query: (collectionRef) => collectionRef,
+        query: (collectionRef), // => collectionRef,
 
         where: firebase.firestore.FieldPath
-            ? (...args) => args
+            ? (...args), // => args
             : null,
 
-        onSnapshot: (ref, success, error) =>
-           ref.onSnapshot(success, error),
+        onSnapshot: (ref, success, error),
+          // ref.onSnapshot(success, error),
 
-      serverTimestamp: () =>
-           firebase.firestore.FieldValue.serverTimestamp(),
+      serverTimestamp: (),
+        //   firebase.firestore.FieldValue.serverTimestamp(),
     };
 </script>
     </script>
