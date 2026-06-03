@@ -108,10 +108,12 @@ function handleLogin(e) {
         .then(userCredential => {
             showNotification('Berhasil masuk!');
             document.getElementById('loginFormElement').reset();
+            showMainApp();
         })
         .catch(error => {
             console.error('Login error:', error);
-            showNotification('Email atau password salah');
+          //  showNotification('Email atau password salah');
+            showNotification('Gagal masuk: ' + error.message);
         })
         .finally(() => showLoading(false));
 }
