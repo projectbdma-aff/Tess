@@ -54,7 +54,7 @@ export function loadHomeFeed() {
 
     const jobsQuery = query(
         collection(db, 'jobs'),
-        where('status', '==', 'open')
+        ('status', '==', 'open')
     );
     
     // Gunakan onSnapshot untuk real-time update
