@@ -17,9 +17,20 @@ let currentUser = null;
 let currentUserData = null;
 
 // Initialize
-document.addEventListener('DOMContentLoaded', function() {
-    checkAuthState();
-});
+//document.addEventListener('DOMContentLoaded', function() {
+   // checkAuthState();
+
+//});
+
+
+    // Panggil fungsi ini saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', () => {
+        // Jika Anda menggunakan app.js yang digabung, pastikan fungsi ini ada
+        if (typeof loadHomeFeed === 'function') {
+            loadHomeFeed();
+        }
+    });
+
 
 function checkAuthState() {
     onAuthStateChanged(auth, user => {
