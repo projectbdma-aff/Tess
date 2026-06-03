@@ -1,10 +1,10 @@
-console.log("app.js berhasil dimuat!");
+//console.log("app.js berhasil dimuat!");
 
-document.addEventListener('DOMContentLoaded', function() {
-    console.log("DOM sudah siap.");
-    checkAuthState();
-    setupEventListeners();
-});
+//document.addEventListener('DOMContentLoaded', function() {
+//    console.log("DOM sudah siap.");
+//    checkAuthState();
+//    setupEventListeners();
+//});
 
 
 // Global State
