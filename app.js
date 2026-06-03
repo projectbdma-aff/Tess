@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Check Auth State
 function checkAuthState() {
- //   onAuthStateChanged(auth, user => {
-        auth.onAuthStateChanged(user => {
+   onAuthStateChanged(auth, user => {
+    //    auth.onAuthStateChanged(user => {
         if (user) {
             currentUser = user;
             loadUserData();
@@ -103,8 +103,8 @@ function handleLogin(e) {
     const email = document.getElementById('loginEmail').value;
     const password = document.getElementById('loginPassword').value;
     
-   // signInWithEmailAndPassword(auth, email, password)
-        auth.signInWithEmailAndPassword(email, password)
+    signInWithEmailAndPassword(auth, email, password)
+      //  auth.signInWithEmailAndPassword(email, password)
         .then(userCredential => {
             showNotification('Berhasil masuk!');
             document.getElementById('loginFormElement').reset();
@@ -127,8 +127,8 @@ function handleRegister(e) {
     const location = document.getElementById('location').value;
     const jobCategory = document.getElementById('jobCategory').value;
     
-   // createUserWithEmailAndPassword(auth, email, password)
-        auth.createUserWithEmailAndPassword(email, password)
+    createUserWithEmailAndPassword(auth, email, password)
+      //  auth.createUserWithEmailAndPassword(email, password)
         .then(userCredential => {
             const uid = userCredential.user.uid;
             // Generate avatar using initials
@@ -175,8 +175,8 @@ function saveUserData(uid, fullName, whatsapp, email, location, jobCategory, pho
 
 function logout(e) {
     if (e) e.preventDefault();
-    //signOut(auth)
-        auth.signOut()
+    signOut(auth)
+      //  auth.signOut()
         .then(() => {
             currentUser = null;
             currentUserData = null;
