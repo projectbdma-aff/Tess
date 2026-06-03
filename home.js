@@ -21,7 +21,7 @@ let currentUserData = null;
   //  checkAuthState();
 //if (typeof loadHomeFeed === 'function') {
    // loadHomeFeed();
-});
+//});
 
 <script>
     // Panggil fungsi ini saat halaman dimuat
@@ -37,7 +37,7 @@ function checkAuthState() {
         if (user) {
             currentUser = user;
             loadUserData();
-           // loadHomeFeed();
+            loadHomeFeed();
         } else {
             window.location.href = 'index.html';
         }
